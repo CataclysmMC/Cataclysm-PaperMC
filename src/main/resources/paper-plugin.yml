@@ -1,0 +1,4 @@
+name: Cataclysm
+version: '1.0'
+main: symphony.cataclysm.Cataclysm
+api-version: '1.20'
