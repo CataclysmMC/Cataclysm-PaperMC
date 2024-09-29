@@ -1,10 +1,3 @@
-# User-specific stuff
-.idea/
-
-*.iml
-*.ipr
-*.iws
-
 # IntelliJ
 out/
 # mpeltonen/sbt-idea plugin
