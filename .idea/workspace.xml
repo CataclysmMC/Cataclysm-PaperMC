@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="224e7523-85be-431b-bc42-920de79d28cb" name="Changes" comment="Migration test">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Cataclysm.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/Cataclysm.main.iml" afterDir="false" />
+    <list default="true" id="224e7523-85be-431b-bc42-920de79d28cb" name="Changes" comment="Migration test #2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -87,19 +84,19 @@
     <option name="sortByType" value="true" />
     <option name="sortKey" value="BY_TYPE" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.C:/Users/Juan/Documents/GitHub/Cataclysm [wrapper].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Cataclysm [build].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Juan/Documents/GitHub/Cataclysm-PaperMC&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.C:/Users/Juan/Documents/GitHub/Cataclysm [wrapper].executor": "Run",
+    "Gradle.Cataclysm [build].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Juan/Documents/GitHub/Cataclysm-PaperMC",
+    "settings.editor.selected.configurable": "project.propVCSSupport.CommitDialog"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="Cataclysm [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
@@ -162,7 +159,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727689908161</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Migration test #2">
+      <option name="closed" value="true" />
+      <created>1727704486614</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1727704486614</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -180,6 +185,7 @@
     <MESSAGE value="Added a custom project icon" />
     <MESSAGE value="Implemented a custom time system" />
     <MESSAGE value="Migration test" />
-    <option name="LAST_COMMIT_MESSAGE" value="Migration test" />
+    <MESSAGE value="Migration test #2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Migration test #2" />
   </component>
 </project>
