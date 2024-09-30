@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Cataclysm.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Cataclysm.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Cataclysm.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Cataclysm.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/symphony.Cataclysm.test.iml" filepath="$PROJECT_DIR$/.idea/modules/symphony.Cataclysm.test.iml" />
     </modules>
   </component>
 </project>
