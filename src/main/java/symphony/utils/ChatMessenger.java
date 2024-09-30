@@ -1,4 +1,4 @@
-package symphony.cataclysm.utils;
+package symphony.utils;
 
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Sound;
@@ -12,7 +12,7 @@ public class ChatMessenger {
     }
 
     public static void sendStaffMessage(Player player, String text) {
-        player.sendMessage(MiniMessage.miniMessage().deserialize("<b><#B9B9B9>[</b><#e7e7d5>Sᴇɴᴛɪɴᴇʟ<b><#B9B9B9>]</b> <#a3a3a3>» <#ddddd3>" + text));
+        player.sendMessage(MiniMessage.miniMessage().deserialize("<b><#c6b2a2>[</b><#c89c60>Admin<b><#c6b2a2>]</b> <#cba78b>» <#999999>" + text));
         player.playSound(player, Sound.BLOCK_ANVIL_PLACE, 0.75F, 1.33F);
     }
 

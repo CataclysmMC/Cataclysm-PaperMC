@@ -6,8 +6,8 @@ import co.aikar.commands.annotation.Subcommand;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import symphony.cataclysm.components.time.TimeManager;
-import symphony.cataclysm.utils.ChatMessenger;
-import symphony.cataclysm.utils.NumberUtils;
+import symphony.utils.ChatMessenger;
+import symphony.utils.NumberUtils;
 
 @CommandAlias("cataclysm|cata")
 public class CataclysmCommand extends BaseCommand {

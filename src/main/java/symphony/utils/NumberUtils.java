@@ -1,4 +1,4 @@
-package symphony.cataclysm.utils;
+package symphony.utils;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
