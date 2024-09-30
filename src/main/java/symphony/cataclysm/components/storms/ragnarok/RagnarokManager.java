@@ -1,13 +1,11 @@
 package symphony.cataclysm.components.storms.ragnarok;
 
 import org.bukkit.Bukkit;
-import org.bukkit.GameRule;
-import org.bukkit.World;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import symphony.cataclysm.components.storms.ragnarok.events.RagnarokEndEvent;
 import symphony.cataclysm.components.storms.ragnarok.events.RagnarokStartEvent;
-import symphony.cataclysm.components.time.TimeHelper;
+import symphony.utils.NumberUtils;
 
 import java.io.IOException;
 import java.util.Random;
@@ -15,26 +13,36 @@ import java.util.Random;
 public class RagnarokManager {
 
     public static void startRangarok() {
-        int duration = new Random().nextInt(1800, 3000) + RagnarokManager.getRagnarokCurrentProgress();
+        RagnarokTask.runRagnarokProgresionTask();
 
-        Bukkit.getPluginManager().callEvent(new RagnarokStartEvent(duration));
+        if (RagnarokManager.isRagnarokActivated()) for (Player player : Bukkit.getOnlinePlayers()) RagnarokBossbar.removeRagnarokBossbar(player);
+        RagnarokBossbar.setUpRagnarokBossbar();
+        for (Player player : Bukkit.getOnlinePlayers()) RagnarokBossbar.displayRagnarokBossbar(player);
 
-        YamlConfiguration configuration = YamlConfiguration.loadConfiguration(TimeHelper.getTimeManagementFile());
+        YamlConfiguration configuration = YamlConfiguration.loadConfiguration(RagnarokHelper.getRagnarokEventFile());
 
         configuration.set(RagnarokHelper.getRagnarokLevelConfigPath(), RagnarokManager.getRagnarokLevel() + 1);
-        configuration.set(RagnarokHelper.getRagnarokCurrentProgress(), duration);
 
         try {
             configuration.save(RagnarokHelper.getRagnarokEventFile());
         } catch (IOException exception) {
             throw new RuntimeException("Hubo un error al intentar guardar el archivo: " + RagnarokHelper.getRagnarokEventFile().getName(), exception);
         }
+
+        int totalDuration = new Random().nextInt(1800, 3000) + RagnarokManager.getRagnarokCurrentProgress();
+
+        RagnarokManager.setRagnarokTotalDuration(totalDuration);
+        RagnarokManager.setRagnarokCurrentProgress(totalDuration);
+
+        Bukkit.getPluginManager().callEvent(new RagnarokStartEvent(totalDuration));
     }
 
     public static void stopRagnarok() {
+        Bukkit.getScheduler().cancelTask(RagnarokTask.getRagnarokProgresionTask());
+
         Bukkit.getPluginManager().callEvent(new RagnarokEndEvent());
 
-        YamlConfiguration configuration = YamlConfiguration.loadConfiguration(TimeHelper.getTimeManagementFile());
+        YamlConfiguration configuration = YamlConfiguration.loadConfiguration(RagnarokHelper.getRagnarokEventFile());
 
         configuration.set(RagnarokHelper.getRagnarokLevelConfigPath(), 0);
 
@@ -43,6 +51,45 @@ public class RagnarokManager {
         } catch (IOException exception) {
             throw new RuntimeException("Hubo un error al intentar guardar el archivo: " + RagnarokHelper.getRagnarokEventFile().getName(), exception);
         }
+
+        RagnarokManager.setRagnarokTotalDuration(0);
+        RagnarokManager.setRagnarokCurrentProgress(0);
+
+        for (Player player : Bukkit.getOnlinePlayers()) RagnarokBossbar.removeRagnarokBossbar(player);
+        RagnarokBossbar.setDecoratedRagnarokBossbar(null);
+        RagnarokBossbar.setTimerRagnarokBossbar(null);
+    }
+
+    public static void setRagnarokTotalDuration(int totalDuration) {
+        YamlConfiguration configuration = YamlConfiguration.loadConfiguration(RagnarokHelper.getRagnarokEventFile());
+
+        configuration.set(RagnarokHelper.getRagnarokTotalDuration(), totalDuration);
+
+        try {
+            configuration.save(RagnarokHelper.getRagnarokEventFile());
+        } catch (IOException exception) {
+            throw new RuntimeException("Hubo un error al intentar guardar el archivo: " + RagnarokHelper.getRagnarokEventFile().getName(), exception);
+        }
+    }
+
+    public static void setRagnarokCurrentProgress(int progress) {
+        YamlConfiguration configuration = YamlConfiguration.loadConfiguration(RagnarokHelper.getRagnarokEventFile());
+
+        configuration.set(RagnarokHelper.getRagnarokCurrentProgress(), progress);
+
+        try {
+            configuration.save(RagnarokHelper.getRagnarokEventFile());
+        } catch (IOException exception) {
+            throw new RuntimeException("Hubo un error al intentar guardar el archivo: " + RagnarokHelper.getRagnarokEventFile().getName(), exception);
+        }
+
+        if (RagnarokBossbar.getDecoratedRagnarokBossbar() != null && RagnarokBossbar.getTimerRagnarokBossbar() != null) {
+            RagnarokBossbar.updateRagnarokBossbar();
+        }
+    }
+
+    public static int getRagnarokTotalDuration() {
+        return YamlConfiguration.loadConfiguration(RagnarokHelper.getRagnarokEventFile()).getInt(RagnarokHelper.getRagnarokTotalDuration());
     }
 
     public static int getRagnarokCurrentProgress() {
@@ -51,6 +98,10 @@ public class RagnarokManager {
 
     public static int getRagnarokLevel() {
         return YamlConfiguration.loadConfiguration(RagnarokHelper.getRagnarokEventFile()).getInt(RagnarokHelper.getRagnarokLevelConfigPath());
+    }
+
+    public static String getRagnarokFormattedDuration() {
+        return NumberUtils.formatSeconds(getRagnarokCurrentProgress(), (getRagnarokCurrentProgress() >= 3600));
     }
 
     public static boolean isRagnarokActivated() {

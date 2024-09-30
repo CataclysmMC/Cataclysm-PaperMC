@@ -23,6 +23,20 @@ public class AdminCommand extends BaseCommand {
         RagnarokManager.stopRagnarok();
     }
 
+    @Subcommand("ragnarok setprogress")
+    private void ragnarokSetProgress(CommandSender commandSender, int progress) {
+        if (!RagnarokManager.isRagnarokActivated()) {
+            if ((commandSender instanceof Player player)) ChatMessenger.sendStaffMessage(player, "No hay un Ragnarök activo en este momento.");
+            return;
+        }
+
+        RagnarokManager.setRagnarokCurrentProgress(progress);
+
+        if ((commandSender instanceof Player player)) {
+            ChatMessenger.sendStaffMessage(player, "Has modificado el progreso del Ragnarök ha: " + NumberUtils.formatSeconds(progress, true));
+        }
+    }
+
     @Subcommand("day setcurrent")
     private void daySetCurrent(CommandSender commandSender, int newDay) {
         TimeManager.setCurrentDay(newDay);

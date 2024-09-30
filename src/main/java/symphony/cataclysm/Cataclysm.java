@@ -1,14 +1,14 @@
 package symphony.cataclysm;
 
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import co.aikar.commands.PaperCommandManager;
 import lombok.Getter;
 import lombok.Setter;
 import symphony.cataclysm.commands.CataclysmCommand;
 import symphony.cataclysm.commands.AdminCommand;
-import symphony.cataclysm.components.storms.ragnarok.RagnarokHelper;
-import symphony.cataclysm.components.storms.ragnarok.RagnarokListener;
+import symphony.cataclysm.components.storms.ragnarok.*;
 import symphony.cataclysm.components.storms.utils.StormHelper;
 import symphony.cataclysm.components.time.TimeHelper;
 import symphony.cataclysm.components.time.TimeManager;
@@ -45,11 +45,25 @@ public final class Cataclysm extends JavaPlugin {
         Bukkit.getConsoleSender().sendMessage("Registrando eventos...");
         Bukkit.getPluginManager().registerEvents(new RagnarokListener(), this);
 
+        Bukkit.getConsoleSender().sendMessage("Configurando tormentas...");
+        if (RagnarokManager.isRagnarokActivated()) {
+            RagnarokBossbar.setUpRagnarokBossbar();
+            RagnarokTask.runRagnarokProgresionTask();
+            for (Player player : Bukkit.getOnlinePlayers()) RagnarokBossbar.displayRagnarokBossbar(player);
+        }
+
         Bukkit.getConsoleSender().sendMessage("El plugin se ha activado correctamente.");
     }
 
     @Override
     public void onDisable() {
+        Bukkit.getConsoleSender().sendMessage("Desactivando tormentas...");
+        if (RagnarokManager.isRagnarokActivated()) {
+            for (Player player : Bukkit.getOnlinePlayers()) {
+                RagnarokBossbar.removeRagnarokBossbar(player);
+            }
+        }
+
         Bukkit.getConsoleSender().sendMessage("El plugin se ha apagado correctamente.");
     }
 

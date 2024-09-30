@@ -12,6 +12,7 @@ public class RagnarokHelper {
     private static final @Getter String ragnarokEventConfigPath = "ragnarok-event.";
     private static final @Getter String ragnarokLevelConfigPath = RagnarokHelper.getRagnarokEventConfigPath() + "current-level";
     private static final @Getter String ragnarokCurrentProgress = RagnarokHelper.getRagnarokEventConfigPath() + "current-progress";
+    private static final @Getter String ragnarokTotalDuration = RagnarokHelper.getRagnarokEventConfigPath() + "total-duration";
 
     private static @Getter @Setter File ragnarokEventFile;
 
