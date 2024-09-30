@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.Setter;
 import symphony.cataclysm.commands.CataclysmCommand;
 import symphony.cataclysm.commands.AdminCommand;
+import symphony.cataclysm.components.player.death.PlayerDeathListener;
+import symphony.cataclysm.components.player.file.PlayerFileHelper;
 import symphony.cataclysm.components.storms.ragnarok.*;
 import symphony.cataclysm.components.storms.utils.StormHelper;
 import symphony.cataclysm.components.time.TimeHelper;
@@ -44,6 +46,7 @@ public final class Cataclysm extends JavaPlugin {
 
         Bukkit.getConsoleSender().sendMessage("Registrando eventos...");
         Bukkit.getPluginManager().registerEvents(new RagnarokListener(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerDeathListener(), this);
 
         Bukkit.getConsoleSender().sendMessage("Configurando tormentas...");
         if (RagnarokManager.isRagnarokActivated()) {
@@ -51,6 +54,9 @@ public final class Cataclysm extends JavaPlugin {
             RagnarokTask.runRagnarokProgresionTask();
             for (Player player : Bukkit.getOnlinePlayers()) RagnarokBossbar.displayRagnarokBossbar(player);
         }
+
+        Bukkit.getConsoleSender().sendMessage("Configurando jugadores...");
+        PlayerFileHelper.createPlayersFolder();
 
         Bukkit.getConsoleSender().sendMessage("El plugin se ha activado correctamente.");
     }

@@ -4,15 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="224e7523-85be-431b-bc42-920de79d28cb" name="Changes" comment="Third Migration Test">
-      <change afterPath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/components/storms/ragnarok/RagnarokBossbar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/components/storms/ragnarok/RagnarokTask.java" afterDir="false" />
+    <list default="true" id="224e7523-85be-431b-bc42-920de79d28cb" name="Changes" comment="Finish and perfect Ragnarok">
+      <change afterPath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/components/player/death/PlayerDeathHelper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/components/player/death/PlayerDeathListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/components/player/death/PlayerDeathManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/components/player/file/PlayerFileHelper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/components/player/file/PlayerFileManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/Cataclysm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/Cataclysm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/commands/AdminCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/commands/AdminCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/components/storms/ragnarok/RagnarokHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/components/storms/ragnarok/RagnarokHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/components/storms/ragnarok/RagnarokListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/components/storms/ragnarok/RagnarokListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/components/storms/ragnarok/RagnarokManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/components/storms/ragnarok/RagnarokManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/symphony/utils/ChatMessenger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/symphony/utils/ChatMessenger.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,12 +77,12 @@
   <component name="GithubDefaultAccount">
     <option name="defaultAccountId" value="039ed867-7a99-4cd5-b5ae-84fb5d88eb1e" />
   </component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/CataclysmMC/Cataclysm-PaperMC.git",
-    "accountId": "039ed867-7a99-4cd5-b5ae-84fb5d88eb1e"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/CataclysmMC/Cataclysm-PaperMC.git&quot;,
+    &quot;accountId&quot;: &quot;039ed867-7a99-4cd5-b5ae-84fb5d88eb1e&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;674c3cda&quot;,
   &quot;associatedIndex&quot;: 7
@@ -94,19 +96,19 @@
     <option name="sortByType" value="true" />
     <option name="sortKey" value="BY_TYPE" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.C:/Users/Juan/Documents/GitHub/Cataclysm [wrapper].executor": "Run",
-    "Gradle.Cataclysm [build].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Juan/Documents/GitHub/Cataclysm-PaperMC",
-    "settings.editor.selected.configurable": "application.passwordSafe"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.C:/Users/Juan/Documents/GitHub/Cataclysm [wrapper].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Cataclysm [build].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Juan/Documents/GitHub/Cataclysm-PaperMC&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;application.passwordSafe&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Cataclysm [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
@@ -185,7 +187,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727706928602</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Finish and perfect Ragnarök">
+      <option name="closed" value="true" />
+      <created>1727717354080</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1727717354093</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -205,6 +215,7 @@
     <MESSAGE value="Migration test" />
     <MESSAGE value="Migration test #2" />
     <MESSAGE value="Third Migration Test" />
-    <option name="LAST_COMMIT_MESSAGE" value="Third Migration Test" />
+    <MESSAGE value="Finish and perfect Ragnarok" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finish and perfect Ragnarok" />
   </component>
 </project>

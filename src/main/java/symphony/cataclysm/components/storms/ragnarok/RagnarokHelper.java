@@ -28,5 +28,4 @@ public class RagnarokHelper {
 
         if (!doesRagnarokEventFileExists) Cataclysm.logMessage("El archivo RagnarokEvent ha sido creado exitosamente.");
     }
-
 }

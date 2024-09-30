@@ -2,9 +2,13 @@ package symphony.cataclysm.commands;
 
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.CommandAlias;
+import co.aikar.commands.annotation.CommandCompletion;
 import co.aikar.commands.annotation.Subcommand;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import symphony.cataclysm.Cataclysm;
+import symphony.cataclysm.components.player.death.PlayerDeathManager;
+import symphony.cataclysm.components.player.file.PlayerFileManager;
 import symphony.cataclysm.components.storms.ragnarok.RagnarokManager;
 import symphony.cataclysm.components.time.TimeManager;
 import symphony.utils.ChatMessenger;
@@ -13,12 +17,32 @@ import symphony.utils.NumberUtils;
 @CommandAlias("catadmin")
 public class AdminCommand extends BaseCommand {
 
-    @Subcommand("ragnarok start")
+    @Subcommand("deathmessage")
+    @CommandCompletion("@players <message>")
+    private void deathmessage(String username, String... texts) {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (int i = 0; i < texts.length; i++) {
+            stringBuilder.append(texts[i]);
+            if (i != texts.length - 1) stringBuilder.append(" ");
+        }
+
+        Cataclysm.logMessage(stringBuilder.toString());
+        new PlayerDeathManager(username).setDeathMessage(stringBuilder.toString());
+    }
+
+    @Subcommand("ragnarok toggleActivation")
+    private void ragnarokToggleActivation() {
+        if (RagnarokManager.isRagnarokActivated()) RagnarokManager.stopRagnarok();
+        else RagnarokManager.startRangarok();
+    }
+
+    @Subcommand("ragnarok forceStart")
     private void ragnarokStart() {
         RagnarokManager.startRangarok();
     }
 
-    @Subcommand("ragnarok stop")
+    @Subcommand("ragnarok forceStop")
     private void ragnarokStop() {
         RagnarokManager.stopRagnarok();
     }
