@@ -16,7 +16,11 @@ import symphony.cataclysm.components.time.TimeHelper;
 import symphony.cataclysm.components.time.TimeManager;
 import symphony.cataclysm.components.time.TimeTask;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+
 public final class Cataclysm extends JavaPlugin {
+    public final @Getter ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
     private static @Getter @Setter PaperCommandManager paperCommandManager;
     private static @Getter @Setter Cataclysm instance;
 

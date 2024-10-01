@@ -1,4 +1,4 @@
-package symphony.cataclysm.components.player.death;
+package symphony.cataclysm.components.player.death.message;
 
 import lombok.Getter;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -8,18 +8,18 @@ import java.io.File;
 import java.io.IOException;
 
 @Getter
-public class PlayerDeathManager {
+public class DeathMessageManager {
     private final File file;
     private final YamlConfiguration configuration;
 
-    public PlayerDeathManager(String username) {
+    public DeathMessageManager(String username) {
         PlayerFileManager playerFileManager = new PlayerFileManager(username);
         this.file = playerFileManager.getFile();
         this.configuration = playerFileManager.getConfiguration();
     }
 
     public void setDeathMessage(String deathMessage) {
-        this.getConfiguration().set(PlayerDeathHelper.getDeathMessageConfigPath(), deathMessage);
+        this.getConfiguration().set(DeathMessageHelper.getDeathMessageConfigPath(), deathMessage);
 
         try {
             this.configuration.save(this.file);
@@ -29,6 +29,6 @@ public class PlayerDeathManager {
     }
 
     public String getDeathMessage() {
-        return this.getConfiguration().getString(PlayerDeathHelper.getDeathMessageConfigPath());
+        return this.getConfiguration().getString(DeathMessageHelper.getDeathMessageConfigPath());
     }
 }

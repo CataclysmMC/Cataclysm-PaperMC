@@ -7,8 +7,7 @@ import co.aikar.commands.annotation.Subcommand;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import symphony.cataclysm.Cataclysm;
-import symphony.cataclysm.components.player.death.PlayerDeathManager;
-import symphony.cataclysm.components.player.file.PlayerFileManager;
+import symphony.cataclysm.components.player.death.message.DeathMessageManager;
 import symphony.cataclysm.components.storms.ragnarok.RagnarokManager;
 import symphony.cataclysm.components.time.TimeManager;
 import symphony.utils.ChatMessenger;
@@ -28,7 +27,7 @@ public class AdminCommand extends BaseCommand {
         }
 
         Cataclysm.logMessage(stringBuilder.toString());
-        new PlayerDeathManager(username).setDeathMessage(stringBuilder.toString());
+        new DeathMessageManager(username).setDeathMessage(stringBuilder.toString());
     }
 
     @Subcommand("ragnarok toggleActivation")

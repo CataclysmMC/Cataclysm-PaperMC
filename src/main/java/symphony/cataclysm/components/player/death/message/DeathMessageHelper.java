@@ -1,9 +1,9 @@
-package symphony.cataclysm.components.player.death;
+package symphony.cataclysm.components.player.death.message;
 
 import lombok.Getter;
 import symphony.cataclysm.components.player.file.PlayerFileHelper;
 
-public class PlayerDeathHelper {
+public class DeathMessageHelper {
 
     private static final @Getter String deathMessageConfigPath = PlayerFileHelper.getInformationConfigPath() + "death-message";
 

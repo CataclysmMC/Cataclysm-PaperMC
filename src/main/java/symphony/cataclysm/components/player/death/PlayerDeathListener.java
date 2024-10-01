@@ -10,6 +10,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import symphony.cataclysm.components.player.death.animation.DeathAnimationManager;
+import symphony.cataclysm.components.player.death.message.DeathMessageManager;
 import symphony.utils.ChatMessenger;
 
 public class PlayerDeathListener implements Listener {
@@ -27,9 +29,13 @@ public class PlayerDeathListener implements Listener {
 
         for (Player players : Bukkit.getOnlinePlayers()) {
             ChatMessenger.sendCataclysmMessage(player, "<#ff4747>¡<#ff2c2c>" + playerName + " <#ff4747>ha sufrido la furia del CATACLISMO!");
-            players.sendMessage(MiniMessage.miniMessage().deserialize("<#a2a1a1>" + playerName + ", " + new PlayerDeathManager(player.getName()).getDeathMessage()));
+            players.sendMessage(MiniMessage.miniMessage().deserialize("<#a2a1a1>" + playerName + ", " + new DeathMessageManager(player.getName()).getDeathMessage()));
             if (deathMessage != null) players.sendMessage(MiniMessage.miniMessage().deserialize("<gradient:#a74545:#562727>" + PlainTextComponentSerializer.plainText().serialize(deathMessage) + "</gradient>"));
         }
+
+        DeathAnimationManager deathAnimationManager = new DeathAnimationManager(player);
+        deathAnimationManager.playAnimation();
+        deathAnimationManager.playSoundChain();
     }
 
 }
