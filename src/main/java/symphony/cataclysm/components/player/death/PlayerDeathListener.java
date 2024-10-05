@@ -10,8 +10,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
+import symphony.cataclysm.Cataclysm;
 import symphony.cataclysm.components.player.death.animation.DeathAnimationManager;
 import symphony.cataclysm.components.player.death.message.DeathMessageManager;
+import symphony.cataclysm.components.storms.ragnarok.RagnarokManager;
 import symphony.utils.ChatMessenger;
 
 public class PlayerDeathListener implements Listener {
@@ -36,6 +40,12 @@ public class PlayerDeathListener implements Listener {
         DeathAnimationManager deathAnimationManager = new DeathAnimationManager(player);
         deathAnimationManager.playAnimation();
         deathAnimationManager.playSoundChain();
-    }
 
+        Bukkit.getScheduler().runTaskLater(Cataclysm.getInstance(), () -> player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 110, 0, true, false)), 15);
+
+        Bukkit.getScheduler().runTaskLater(Cataclysm.getInstance(), () -> {
+            if (!player.isOp()) player.banPlayer("¡No has sobrevivido al CATACLISMO!");
+            RagnarokManager.startRangarok();
+        }, 130);
+    }
 }

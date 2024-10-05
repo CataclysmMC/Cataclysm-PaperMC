@@ -7,6 +7,7 @@ import co.aikar.commands.annotation.Subcommand;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import symphony.cataclysm.Cataclysm;
+import symphony.cataclysm.components.items.CataclysmItems;
 import symphony.cataclysm.components.player.death.message.DeathMessageManager;
 import symphony.cataclysm.components.storms.ragnarok.RagnarokManager;
 import symphony.cataclysm.components.time.TimeManager;
@@ -15,6 +16,13 @@ import symphony.utils.NumberUtils;
 
 @CommandAlias("catadmin")
 public class AdminCommand extends BaseCommand {
+
+    @Subcommand("itemGive")
+    private void itemGive(CommandSender commandSender, CataclysmItems item) {
+        Player player = (Player) commandSender;
+
+        player.getInventory().addItem(item.getItemBuilder().build());
+    }
 
     @Subcommand("deathmessage")
     @CommandCompletion("@players <message>")

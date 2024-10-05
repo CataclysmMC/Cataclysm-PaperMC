@@ -59,7 +59,7 @@ public class RagnarokListener implements Listener {
             ChatMessenger.sendCataclysmMessage(player, "El Ragnarök ha terminado.");
 
             player.playSound(player, Sound.ENTITY_PLAYER_LEVELUP, 1.25F, 0.84F);
-            player.playSound(player, Sound.ENTITY_ZOMBIE_VILLAGER_CURE, 1.25F, 0.84F);
+            player.playSound(player, Sound.ENTITY_ZOMBIE_VILLAGER_CONVERTED, 1.25F, 0.84F);
         }
 
         World overworld = Bukkit.getWorld("world");

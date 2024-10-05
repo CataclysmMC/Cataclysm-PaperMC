@@ -10,6 +10,7 @@ import symphony.cataclysm.commands.CataclysmCommand;
 import symphony.cataclysm.commands.AdminCommand;
 import symphony.cataclysm.components.player.death.PlayerDeathListener;
 import symphony.cataclysm.components.player.file.PlayerFileHelper;
+import symphony.cataclysm.components.player.totem.PlayerTotemListener;
 import symphony.cataclysm.components.storms.ragnarok.*;
 import symphony.cataclysm.components.storms.utils.StormHelper;
 import symphony.cataclysm.components.time.TimeHelper;
@@ -23,6 +24,8 @@ public final class Cataclysm extends JavaPlugin {
     public final @Getter ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
     private static @Getter @Setter PaperCommandManager paperCommandManager;
     private static @Getter @Setter Cataclysm instance;
+
+    private static @Getter @Setter int currentDay;
 
     @Override
     public void onEnable() {
@@ -51,6 +54,7 @@ public final class Cataclysm extends JavaPlugin {
         Bukkit.getConsoleSender().sendMessage("Registrando eventos...");
         Bukkit.getPluginManager().registerEvents(new RagnarokListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerDeathListener(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerTotemListener(), this);
 
         Bukkit.getConsoleSender().sendMessage("Configurando tormentas...");
         if (RagnarokManager.isRagnarokActivated()) {
@@ -61,6 +65,9 @@ public final class Cataclysm extends JavaPlugin {
 
         Bukkit.getConsoleSender().sendMessage("Configurando jugadores...");
         PlayerFileHelper.createPlayersFolder();
+
+        Bukkit.getConsoleSender().sendMessage("Configurando plugin internamente...");
+        Cataclysm.setCurrentDay(TimeManager.getCurrentDay());
 
         Bukkit.getConsoleSender().sendMessage("El plugin se ha activado correctamente.");
     }
