@@ -1,7 +1,5 @@
 package symphony.cataclysm.components.player.death;
 
-import lombok.Getter;
-import lombok.Setter;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
@@ -24,7 +22,6 @@ import symphony.utils.ChatMessenger;
 import java.util.Random;
 
 public class PlayerDeathListener implements Listener {
-    private static @Getter @Setter int incomingRagnarokDuration;
 
     @EventHandler
     private void onPlayerDeathEvent(PlayerDeathEvent event) {
@@ -46,7 +43,7 @@ public class PlayerDeathListener implements Listener {
         RagnarokManager.setScheduledRagnarokDuration(new Random().nextInt(1800, 3000) + RagnarokManager.getRagnarokCurrentProgress() + RagnarokManager.getScheduledRagnarokDuration());
 
         if (Cataclysm.getDeathAnimation() != null) {
-            for (BukkitTask deathEventTasks : Cataclysm.getDeathEventTasks()) {
+            for (BukkitTask deathEventTasks : PlayerDeathHelper.getDeathEventTasks()) {
                 deathEventTasks.cancel();
             }
 
@@ -60,14 +57,14 @@ public class PlayerDeathListener implements Listener {
 
         Cataclysm.setDeathAnimation(deathAnimationManager);
 
-        Cataclysm.getDeathEventTasks().add(Bukkit.getScheduler().runTaskLater(Cataclysm.getInstance(), () -> player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 115, 0, true, false)), 15));
+        PlayerDeathHelper.getDeathEventTasks().add(Bukkit.getScheduler().runTaskLater(Cataclysm.getInstance(), () -> player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 115, 0, true, false)), 15));
 
-        Cataclysm.getDeathEventTasks().add(Bukkit.getScheduler().runTaskLater(Cataclysm.getInstance(), () -> {
+        PlayerDeathHelper.getDeathEventTasks().add(Bukkit.getScheduler().runTaskLater(Cataclysm.getInstance(), () -> {
             if (!player.isOp()) player.banPlayer("¡No has sobrevivido al CATACLISMO!");
             RagnarokManager.startRangarok();
 
             RagnarokManager.setScheduledRagnarokDuration(0);
-            Cataclysm.getDeathEventTasks().clear();
+            PlayerDeathHelper.getDeathEventTasks().clear();
             Cataclysm.setDeathAnimation(null);
         }, 130));
     }

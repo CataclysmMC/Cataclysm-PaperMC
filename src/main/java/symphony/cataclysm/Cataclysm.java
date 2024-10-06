@@ -30,9 +30,7 @@ public final class Cataclysm extends JavaPlugin {
     private static @Getter @Setter Cataclysm instance;
 
     private static @Getter @Setter int currentDay;
-
     private static @Getter @Setter DeathAnimationManager deathAnimation;
-    private static @Getter @Setter List<BukkitTask> deathEventTasks = new ArrayList<>();
 
     @Override
     public void onEnable() {
@@ -57,6 +55,7 @@ public final class Cataclysm extends JavaPlugin {
 
         Bukkit.getConsoleSender().sendMessage("Insertando valores por defecto...");
         if (TimeManager.getCurrentWeek() == 0) TimeManager.setCurrentWeek(1);
+        if (TimeManager.getCurrentDay() == 0) TimeManager.setCurrentDay(1);
 
         Bukkit.getConsoleSender().sendMessage("Registrando eventos...");
         Bukkit.getPluginManager().registerEvents(new RagnarokListener(), this);
