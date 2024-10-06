@@ -4,19 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="224e7523-85be-431b-bc42-920de79d28cb" name="Changes" comment="Implemented Death Animation and Message Managers. Also added the animation play and sound system">
-      <change afterPath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/components/items/CataclysmItems.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/components/items/ItemBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/components/player/totem/PlayerTotemListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/components/player/totem/PlayerTotemManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/components/player/totem/PlayerTotemUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/components/player/totem/events/PlayerTotemUseEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/symphony/utils/PersistentData.java" afterDir="false" />
+    <list default="true" id="224e7523-85be-431b-bc42-920de79d28cb" name="Changes" comment="Implemented custom totem mechanic">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/Cataclysm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/Cataclysm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/commands/AdminCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/commands/AdminCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/components/player/death/PlayerDeathListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/components/player/death/PlayerDeathListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/components/storms/ragnarok/RagnarokListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/components/storms/ragnarok/RagnarokListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/components/player/death/animation/DeathAnimationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/components/player/death/animation/DeathAnimationManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/components/storms/ragnarok/RagnarokManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/components/storms/ragnarok/RagnarokManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -219,7 +212,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727752276261</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Implemented custom totem mechanic">
+      <option name="closed" value="true" />
+      <created>1728172779762</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1728172779762</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -242,6 +243,7 @@
     <MESSAGE value="Finish and perfect Ragnarok" />
     <MESSAGE value="Implemented permanent death logic and custom death messages" />
     <MESSAGE value="Implemented Death Animation and Message Managers. Also added the animation play and sound system" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented Death Animation and Message Managers. Also added the animation play and sound system" />
+    <MESSAGE value="Implemented custom totem mechanic" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented custom totem mechanic" />
   </component>
 </project>

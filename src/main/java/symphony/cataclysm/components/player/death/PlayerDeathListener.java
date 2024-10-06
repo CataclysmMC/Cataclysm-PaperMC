@@ -1,5 +1,7 @@
 package symphony.cataclysm.components.player.death;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
@@ -12,13 +14,17 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.scheduler.BukkitTask;
 import symphony.cataclysm.Cataclysm;
 import symphony.cataclysm.components.player.death.animation.DeathAnimationManager;
 import symphony.cataclysm.components.player.death.message.DeathMessageManager;
 import symphony.cataclysm.components.storms.ragnarok.RagnarokManager;
 import symphony.utils.ChatMessenger;
 
+import java.util.Random;
+
 public class PlayerDeathListener implements Listener {
+    private static @Getter @Setter int incomingRagnarokDuration;
 
     @EventHandler
     private void onPlayerDeathEvent(PlayerDeathEvent event) {
@@ -37,15 +43,32 @@ public class PlayerDeathListener implements Listener {
             if (deathMessage != null) players.sendMessage(MiniMessage.miniMessage().deserialize("<gradient:#a74545:#562727>" + PlainTextComponentSerializer.plainText().serialize(deathMessage) + "</gradient>"));
         }
 
+        RagnarokManager.setScheduledRagnarokDuration(new Random().nextInt(1800, 3000) + RagnarokManager.getRagnarokCurrentProgress() + RagnarokManager.getScheduledRagnarokDuration());
+
+        if (Cataclysm.getDeathAnimation() != null) {
+            for (BukkitTask deathEventTasks : Cataclysm.getDeathEventTasks()) {
+                deathEventTasks.cancel();
+            }
+
+            Cataclysm.getDeathAnimation().getScheduledFuture().cancel(true);
+            Cataclysm.getDeathAnimation().setScheduledFuture(null);
+        }
+
         DeathAnimationManager deathAnimationManager = new DeathAnimationManager(player);
         deathAnimationManager.playAnimation();
         deathAnimationManager.playSoundChain();
 
-        Bukkit.getScheduler().runTaskLater(Cataclysm.getInstance(), () -> player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 110, 0, true, false)), 15);
+        Cataclysm.setDeathAnimation(deathAnimationManager);
 
-        Bukkit.getScheduler().runTaskLater(Cataclysm.getInstance(), () -> {
+        Cataclysm.getDeathEventTasks().add(Bukkit.getScheduler().runTaskLater(Cataclysm.getInstance(), () -> player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 115, 0, true, false)), 15));
+
+        Cataclysm.getDeathEventTasks().add(Bukkit.getScheduler().runTaskLater(Cataclysm.getInstance(), () -> {
             if (!player.isOp()) player.banPlayer("¡No has sobrevivido al CATACLISMO!");
             RagnarokManager.startRangarok();
-        }, 130);
+
+            RagnarokManager.setScheduledRagnarokDuration(0);
+            Cataclysm.getDeathEventTasks().clear();
+            Cataclysm.setDeathAnimation(null);
+        }, 130));
     }
 }

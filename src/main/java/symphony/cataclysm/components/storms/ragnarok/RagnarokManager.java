@@ -1,5 +1,7 @@
 package symphony.cataclysm.components.storms.ragnarok;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -11,6 +13,7 @@ import java.io.IOException;
 import java.util.Random;
 
 public class RagnarokManager {
+    private static @Getter @Setter int scheduledRagnarokDuration;
 
     public static void startRangarok() {
         RagnarokTask.runRagnarokProgresionTask();
@@ -29,12 +32,10 @@ public class RagnarokManager {
             throw new RuntimeException("Hubo un error al intentar guardar el archivo: " + RagnarokHelper.getRagnarokEventFile().getName(), exception);
         }
 
-        int totalDuration = new Random().nextInt(1800, 3000) + RagnarokManager.getRagnarokCurrentProgress();
+        RagnarokManager.setRagnarokTotalDuration(RagnarokManager.getScheduledRagnarokDuration());
+        RagnarokManager.setRagnarokCurrentProgress(RagnarokManager.getScheduledRagnarokDuration());
 
-        RagnarokManager.setRagnarokTotalDuration(totalDuration);
-        RagnarokManager.setRagnarokCurrentProgress(totalDuration);
-
-        Bukkit.getPluginManager().callEvent(new RagnarokStartEvent(totalDuration));
+        Bukkit.getPluginManager().callEvent(new RagnarokStartEvent(RagnarokManager.getRagnarokTotalDuration()));
     }
 
     public static void stopRagnarok() {

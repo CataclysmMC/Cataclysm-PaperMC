@@ -41,7 +41,7 @@ public class DeathAnimationManager {
 
             for (Player players : Bukkit.getOnlinePlayers()) {
                 players.showTitle(Title.title(
-                        MiniMessage.miniMessage().deserialize("#4e5c24" + DeathAnimationUtils.convertUnicode(frames.get(tick[0]))),
+                        MiniMessage.miniMessage().deserialize("<#4e5c24>" + DeathAnimationUtils.convertUnicode(frames.get(tick[0]))),
                         Component.text(""),
                         Title.Times.times(Duration.ofMillis(0), Duration.ofMillis(250), Duration.ofSeconds(4))
                 ));
@@ -59,31 +59,31 @@ public class DeathAnimationManager {
             players.playSound(players, Sound.ENTITY_ELDER_GUARDIAN_CURSE, 0.85F, 0.95F);
             players.playSound(players, Sound.ENTITY_ELDER_GUARDIAN_DEATH, 1.25F, 0.55F);
 
-            Bukkit.getScheduler().runTaskLater(Cataclysm.getInstance(), () -> {
+            Cataclysm.getDeathEventTasks().add(Bukkit.getScheduler().runTaskLater(Cataclysm.getInstance(), () -> {
                 players.playSound(players, Sound.ENTITY_ELDER_GUARDIAN_CURSE, 0.85F, 1.15F);
                 players.playSound(players, Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 1.85F, 0.5F);
-            }, 15);
+            }, 15));
 
-            Bukkit.getScheduler().runTaskLater(Cataclysm.getInstance(), () -> {
+            Cataclysm.getDeathEventTasks().add(Bukkit.getScheduler().runTaskLater(Cataclysm.getInstance(), () -> {
                 players.playSound(players, Sound.ENTITY_ELDER_GUARDIAN_CURSE, 0.85F, 1.3F);
                 players.playSound(players, Sound.ENTITY_GUARDIAN_DEATH, 1.25F, 0.5F);
-            }, 45);
+            }, 45));
 
-            Bukkit.getScheduler().runTaskLater(Cataclysm.getInstance(), () -> {
+            Cataclysm.getDeathEventTasks().add(Bukkit.getScheduler().runTaskLater(Cataclysm.getInstance(), () -> {
                 players.playSound(players, Sound.ENTITY_ELDER_GUARDIAN_CURSE, 0.85F, 1.05F);
                 players.playSound(players, Sound.ITEM_TRIDENT_THUNDER, 1.25F, 1.35F);
-            }, 55);
+            }, 55));
 
-            Bukkit.getScheduler().runTaskLater(Cataclysm.getInstance(), () -> {
+            Cataclysm.getDeathEventTasks().add(Bukkit.getScheduler().runTaskLater(Cataclysm.getInstance(), () -> {
                 players.playSound(players, Sound.ENTITY_ELDER_GUARDIAN_CURSE, 0.85F, 1.33F);
                 players.playSound(players, Sound.ENTITY_SKELETON_HORSE_DEATH, 1.35F, 0.85F);
-            }, 65);
+            }, 65));
 
-            Bukkit.getScheduler().runTaskLater(Cataclysm.getInstance(), () -> {
+            Cataclysm.getDeathEventTasks().add(Bukkit.getScheduler().runTaskLater(Cataclysm.getInstance(), () -> {
                 players.playSound(players, Sound.ENTITY_ELDER_GUARDIAN_CURSE, 0.85F, 1.5F);
                 players.playSound(players, Sound.ENTITY_ELDER_GUARDIAN_DEATH, 1.35F, 0.85F);
                 players.playSound(players, Sound.ENTITY_ELDER_GUARDIAN_AMBIENT, 1.45F, 0.55F);
-            }, 75);
+            }, 75));
         }
     }
 }

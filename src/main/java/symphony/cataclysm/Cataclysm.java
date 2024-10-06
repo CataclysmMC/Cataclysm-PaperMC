@@ -6,9 +6,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 import co.aikar.commands.PaperCommandManager;
 import lombok.Getter;
 import lombok.Setter;
+import org.bukkit.scheduler.BukkitTask;
 import symphony.cataclysm.commands.CataclysmCommand;
 import symphony.cataclysm.commands.AdminCommand;
 import symphony.cataclysm.components.player.death.PlayerDeathListener;
+import symphony.cataclysm.components.player.death.animation.DeathAnimationManager;
 import symphony.cataclysm.components.player.file.PlayerFileHelper;
 import symphony.cataclysm.components.player.totem.PlayerTotemListener;
 import symphony.cataclysm.components.storms.ragnarok.*;
@@ -17,6 +19,8 @@ import symphony.cataclysm.components.time.TimeHelper;
 import symphony.cataclysm.components.time.TimeManager;
 import symphony.cataclysm.components.time.TimeTask;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
@@ -26,6 +30,9 @@ public final class Cataclysm extends JavaPlugin {
     private static @Getter @Setter Cataclysm instance;
 
     private static @Getter @Setter int currentDay;
+
+    private static @Getter @Setter DeathAnimationManager deathAnimation;
+    private static @Getter @Setter List<BukkitTask> deathEventTasks = new ArrayList<>();
 
     @Override
     public void onEnable() {
@@ -68,6 +75,7 @@ public final class Cataclysm extends JavaPlugin {
 
         Bukkit.getConsoleSender().sendMessage("Configurando plugin internamente...");
         Cataclysm.setCurrentDay(TimeManager.getCurrentDay());
+        Cataclysm.setDeathAnimation(null);
 
         Bukkit.getConsoleSender().sendMessage("El plugin se ha activado correctamente.");
     }
