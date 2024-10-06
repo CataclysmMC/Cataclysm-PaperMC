@@ -4,11 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="224e7523-85be-431b-bc42-920de79d28cb" name="Changes" comment="Implemented a security system to the death event">
-      <change afterPath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/components/player/death/PlayerDeathHelper.java" afterDir="false" />
+    <list default="true" id="224e7523-85be-431b-bc42-920de79d28cb" name="Changes" comment="Fixed day default value error">
+      <change afterPath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/components/items/ItemListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/Cataclysm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/Cataclysm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/components/player/death/PlayerDeathListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/components/player/death/PlayerDeathListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/components/player/death/animation/DeathAnimationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/components/player/death/animation/DeathAnimationManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/commands/AdminCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/commands/AdminCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/components/items/CataclysmItems.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/components/items/CataclysmItems.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/components/items/ItemBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/components/items/ItemBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/components/storms/ragnarok/RagnarokListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/components/storms/ragnarok/RagnarokListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/components/storms/ragnarok/RagnarokManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/symphony/cataclysm/components/storms/ragnarok/RagnarokManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -227,7 +231,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728175793313</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Fixed day default value error">
+      <option name="closed" value="true" />
+      <created>1728176283077</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1728176283079</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -252,6 +264,7 @@
     <MESSAGE value="Implemented Death Animation and Message Managers. Also added the animation play and sound system" />
     <MESSAGE value="Implemented custom totem mechanic" />
     <MESSAGE value="Implemented a security system to the death event" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented a security system to the death event" />
+    <MESSAGE value="Fixed day default value error" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed day default value error" />
   </component>
 </project>

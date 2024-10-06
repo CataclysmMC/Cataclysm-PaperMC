@@ -32,6 +32,10 @@ public class RagnarokManager {
             throw new RuntimeException("Hubo un error al intentar guardar el archivo: " + RagnarokHelper.getRagnarokEventFile().getName(), exception);
         }
 
+        if (RagnarokManager.getScheduledRagnarokDuration() == 0) {
+            RagnarokManager.setScheduledRagnarokDuration(new Random().nextInt(1800, 3000) + RagnarokManager.getRagnarokCurrentProgress() + RagnarokManager.getScheduledRagnarokDuration());
+        }
+
         RagnarokManager.setRagnarokTotalDuration(RagnarokManager.getScheduledRagnarokDuration());
         RagnarokManager.setRagnarokCurrentProgress(RagnarokManager.getScheduledRagnarokDuration());
 

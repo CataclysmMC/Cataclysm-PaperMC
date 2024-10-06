@@ -2,7 +2,10 @@ package symphony.cataclysm.components.items;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
+import lombok.Getter;
+import lombok.Setter;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
@@ -21,11 +24,10 @@ import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
 import symphony.utils.PersistentData;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
 
+@Getter @Setter
 public class ItemBuilder {
     private ItemMeta meta;
     private ItemStack item;
@@ -36,7 +38,7 @@ public class ItemBuilder {
 
     public ItemBuilder setDisplay(String display) {
         this.meta = this.item.getItemMeta();
-        this.meta.displayName(MiniMessage.miniMessage().deserialize(display));
+        this.meta.displayName(MiniMessage.miniMessage().deserialize(display).decoration(TextDecoration.ITALIC, false));
         this.item.setItemMeta(this.meta);
         return this;
     }
@@ -48,18 +50,21 @@ public class ItemBuilder {
         return this;
     }
 
-    public enum ChipColors {BLACK, BLUE, GREEN, RED, YELLOW}
-
-    public ItemBuilder setChipColor(ChipColors color) {
-        String value = color.name().toLowerCase();
-        this.setCustomData("color", value);
-        this.setNBT(value);
-        return this;
-    }
-
     public ItemBuilder setCustomData(String key, String value) {
         this.meta = this.item.getItemMeta();
         PersistentData.set(meta, key, PersistentDataType.STRING, value);
+        this.item.setItemMeta(this.meta);
+        return this;
+    }
+
+    public ItemBuilder setLore(String... lore) {
+        this.meta = this.item.getItemMeta();
+        final var loreList = new ArrayList<Component>();
+
+        if (this.meta.lore() != null) loreList.addAll(this.meta.lore());
+        for (String lines : lore) loreList.add(MiniMessage.miniMessage().deserialize(lines).decoration(TextDecoration.ITALIC, false));
+
+        this.meta.lore(loreList);
         this.item.setItemMeta(this.meta);
         return this;
     }

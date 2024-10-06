@@ -17,11 +17,10 @@ import symphony.utils.NumberUtils;
 @CommandAlias("catadmin")
 public class AdminCommand extends BaseCommand {
 
-    @Subcommand("itemGive")
-    private void itemGive(CommandSender commandSender, CataclysmItems item) {
+    @Subcommand("itemgive")
+    private void itemgive(CommandSender commandSender, CataclysmItems items) {
         Player player = (Player) commandSender;
-
-        player.getInventory().addItem(item.getItemBuilder().build());
+        player.getInventory().addItem(items.getItemBuilder().build());
     }
 
     @Subcommand("deathmessage")

@@ -11,6 +11,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import symphony.cataclysm.Cataclysm;
+import symphony.cataclysm.components.items.CataclysmItems;
 import symphony.cataclysm.components.storms.ragnarok.events.RagnarokEndEvent;
 import symphony.cataclysm.components.storms.ragnarok.events.RagnarokStartEvent;
 import symphony.utils.ChatMessenger;

@@ -6,9 +6,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 import co.aikar.commands.PaperCommandManager;
 import lombok.Getter;
 import lombok.Setter;
-import org.bukkit.scheduler.BukkitTask;
 import symphony.cataclysm.commands.CataclysmCommand;
 import symphony.cataclysm.commands.AdminCommand;
+import symphony.cataclysm.components.items.ItemListener;
 import symphony.cataclysm.components.player.death.PlayerDeathListener;
 import symphony.cataclysm.components.player.death.animation.DeathAnimationManager;
 import symphony.cataclysm.components.player.file.PlayerFileHelper;
@@ -19,8 +19,6 @@ import symphony.cataclysm.components.time.TimeHelper;
 import symphony.cataclysm.components.time.TimeManager;
 import symphony.cataclysm.components.time.TimeTask;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
@@ -61,6 +59,7 @@ public final class Cataclysm extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new RagnarokListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerDeathListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerTotemListener(), this);
+        Bukkit.getPluginManager().registerEvents(new ItemListener(), this);
 
         Bukkit.getConsoleSender().sendMessage("Configurando tormentas...");
         if (RagnarokManager.isRagnarokActivated()) {
